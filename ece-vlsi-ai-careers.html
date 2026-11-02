@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ECE & VLSI Careers in the AI Era · India & Global · 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#070d1a; --panel:#0f1729; --panel2:#16213a; --text:#e8edf6; --muted:#93a1ba;
+    --line:rgba(255,255,255,.08); --accent:#2dd4bf; --blue:#60a5fa; --violet:#a78bfa;
+    --green:#22c55e; --amber:#f59e0b; --red:#ef4444; --pink:#f472b6;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0}
+  body{
+    background:radial-gradient(1000px 560px at 0% -10%,#0f3a44 0%,transparent 60%),
+               radial-gradient(900px 500px at 100% 0%,#2b1a52 0%,transparent 55%),var(--bg);
+    color:var(--text);font:14px/1.55 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;min-height:100vh;
+  }
+  .wrap{max-width:1400px;margin:0 auto;padding:24px 20px 40px}
+  header{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:16px}
+  .eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--accent);font-weight:600}
+  h1{margin:4px 0 0;font-size:28px;letter-spacing:-.01em}
+  h1 span{background:linear-gradient(90deg,#2dd4bf,#60a5fa,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .tagline{color:var(--muted);margin-top:4px;font-size:13.5px;max-width:780px}
+  .jump{display:flex;flex-wrap:wrap;gap:6px}
+  .jump a{font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--line);color:var(--text);text-decoration:none;background:var(--panel2)}
+  .jump a:hover{border-color:var(--accent)}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+  .kpi{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden}
+  .kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c)}
+  .kpi .v{font-size:23px;font-weight:700}
+  .kpi .l{font-size:12.5px;margin-top:2px}
+  .kpi .s{font-size:11.5px;color:var(--muted)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:16px}
+  .card h2{font-size:16px;margin:0}
+  .card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+  .section-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px;margin:28px 0 10px;scroll-margin-top:12px}
+  .section-title h2{margin:0;font-size:19px}
+  .section-title span{color:var(--muted);font-size:12.5px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+  .grid2>.card,.grid3>.card{margin-bottom:0}
+  @media (max-width:1100px){.grid3{grid-template-columns:1fr 1fr}}
+  @media (max-width:1000px){.grid2,.grid3{grid-template-columns:1fr}}
+  .chart-box{position:relative;height:300px}
+  .chart-box.mid{height:390px}
+  .chart-box.tall{height:500px}
+
+  /* Verdict */
+  .verdict{display:grid;grid-template-columns:1.25fr 1fr;gap:24px;background:linear-gradient(135deg,rgba(45,212,191,.09),rgba(167,139,250,.06)),var(--panel)}
+  @media (max-width:900px){.verdict{grid-template-columns:1fr}}
+  .big{font-size:21px!important;margin:4px 0 8px!important}
+  .lead{font-size:14px;color:#cfd7e6;margin:0 0 8px}
+  .meter{margin-bottom:13px}
+  .meter .top{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;margin-bottom:4px}
+  .meter .bar{height:9px;border-radius:5px;background:rgba(255,255,255,.07);overflow:hidden}
+  .meter .fill{height:100%;border-radius:5px}
+
+  /* Evidence */
+  .ev{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:700px){.ev{grid-template-columns:1fr}}
+  .ev>div{border-radius:12px;padding:12px 14px}
+  .ev .pos{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.28)}
+  .ev .neg{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3)}
+  .ev h4{margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+  .ev .pos h4{color:#4ade80} .ev .neg h4{color:#fbbf24}
+  .ev ul{margin:0;padding-left:18px;font-size:12.8px}
+  .ev li{margin-bottom:7px}
+  .src{color:var(--muted);font-size:11px}
+
+  /* Top 5 */
+  .top5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  @media (max-width:1200px){.top5{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:700px){.top5{grid-template-columns:1fr}}
+  .t5{background:var(--panel2);border:1px solid var(--line);border-top:3px solid var(--green);border-radius:12px;padding:12px 14px;cursor:pointer;transition:transform .2s,border-color .2s}
+  .t5:hover{transform:translateY(-2px);border-color:var(--green)}
+  .t5 .rank{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .t5 h3{margin:2px 0 4px;font-size:14px}
+  .t5 .score{font-size:20px;font-weight:700;color:#4ade80}
+  .t5 p{font-size:12.3px;color:#cfd7e6;margin:6px 0 0}
+
+  /* Navigator */
+  .navi{display:grid;grid-template-columns:290px 1fr;gap:16px}
+  @media (max-width:900px){.navi{grid-template-columns:1fr}}
+  .ctrl label{display:block;font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+  .ctrl select{display:block;width:100%;margin-top:5px;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-size:13px}
+  .ctrl select:focus{outline:none;border-color:var(--accent)}
+  .nav-out{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .nav-out h3{margin:0 0 8px;font-size:17px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+  .chip{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+  .nav-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:700px){.nav-grid{grid-template-columns:1fr}}
+  .box{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.8px}
+  .box .k{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+  .box ol{margin:0;padding-left:18px}
+  .box li{margin-bottom:4px}
+
+  /* Tables, timeline, paths, steps */
+  .tbl-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12.8px}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em}
+  td:first-child{color:var(--muted);font-weight:600;white-space:nowrap}
+  .tl-list{list-style:none;margin:0;padding:0;position:relative}
+  .tl-list:before{content:"";position:absolute;left:7px;top:4px;bottom:4px;width:2px;background:rgba(45,212,191,.3)}
+  .tl-list li{position:relative;padding:0 0 12px 26px;font-size:12.8px}
+  .tl-list li:before{content:"";position:absolute;left:2px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px rgba(45,212,191,.2)}
+  .tl-list b{color:var(--accent)}
+  .paths{display:grid;gap:10px}
+  .path{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--c);border-radius:10px;padding:10px 12px;font-size:12.8px}
+  .path h4{margin:0 0 3px;font-size:13.5px}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media (max-width:1000px){.steps{grid-template-columns:1fr 1fr}}
+  @media (max-width:640px){.steps{grid-template-columns:1fr}}
+  .step{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.8px}
+  .step .n{width:26px;height:26px;border-radius:50%;background:var(--accent);color:#04201c;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+  .step h4{margin:0 0 4px;font-size:14px}
+  .note{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:10px 12px;font-size:12.6px;color:#fde68a;margin-top:12px}
+  footer{color:var(--muted);font-size:12px;line-height:1.7}
+  footer b{color:var(--text)}
+  .warn{display:none;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:#fcd34d;padding:10px 14px;border-radius:10px;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="warn" class="warn">Charts need an internet connection to load Chart.js. The text, tables and career navigator still work offline.</div>
+
+  <header>
+    <div>
+      <div class="eyebrow">For BTech ECE · MTech VLSI / ECE / Comm & SP / Embedded / RF / Power</div>
+      <h1>ECE & VLSI Careers in the <span>AI Era</span></h1>
+      <div class="tagline">Employability, salaries, hiring trends and AI risk for electronics engineers in India and worldwide, and which specializations are safest. Data as of October 2026.</div>
+    </div>
+    <nav class="jump">
+      <a href="#market">Market</a><a href="#salary">Salaries</a><a href="#ai">AI impact</a>
+      <a href="#safe">Safest specializations</a><a href="#navigator">Career navigator</a>
+      <a href="#global">India vs global</a><a href="#plan">Action plan</a>
+    </nav>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+
+  <!-- VERDICT -->
+  <section class="card verdict">
+    <div>
+      <div class="eyebrow">The short answer</div>
+      <h2 class="big">Should ECE/VLSI students fear losing jobs to AI?</h2>
+      <p class="lead"><b>No panic, but no complacency.</b> Chip and hardware work is growing worldwide, and AI itself is a big reason why. What AI is removing is the <i>routine entry-level task layer</i>: boilerplate testbenches, regression triage, scripting, manual testing. It is also shrinking the IT-services fallback that many ECE graduates relied on.</p>
+      <p class="lead">Engineers who pair deep fundamentals (analog, devices, architecture, signals) with AI-assisted tools are in a stronger position than ever. The real threat is an engineer who uses AI well, not AI itself.</p>
+    </div>
+    <div id="meters"></div>
+  </section>
+
+  <!-- MARKET -->
+  <div class="section-title" id="market"><h2>1 · Market pulse 2026</h2><span>Where the hiring is happening</span></div>
+  <div class="grid3">
+    <section class="card">
+      <h2>India chip-design GCC open roles</h2>
+      <div class="sub">Top semiconductor design GCCs, Q1 2026 (Careernet)</div>
+      <div class="chart-box"><canvas id="gccChart"></canvas></div>
+    </section>
+    <section class="card">
+      <h2>What those GCCs are hiring for</h2>
+      <div class="sub">Share of open roles. Midpoints of the reported ranges.</div>
+      <div class="chart-box"><canvas id="mixChart"></canvas></div>
+    </section>
+    <section class="card">
+      <h2>Hiring signals: core vs IT services</h2>
+      <div class="sub">% change; periods differ and are shown in each label</div>
+      <div class="chart-box"><canvas id="signalChart"></canvas></div>
+    </section>
+  </div>
+
+  <div class="grid2">
+    <section class="card">
+      <h2>India’s semiconductor build-out</h2>
+      <div class="sub">Why core ECE demand is structurally rising</div>
+      <ul class="tl-list" style="margin-top:12px">
+        <li><b>Dec 2021</b> · India Semiconductor Mission (ISM) launched with ≈₹76,000 crore of incentives.</li>
+        <li><b>Jun 2023</b> · Micron’s ₹22,516 crore assembly & test (ATMP) plant approved at Sanand, Gujarat.</li>
+        <li><b>Feb 2026</b> · Budget 2026–27 launches ISM 2.0 (₹1,000 crore for FY27), focused on design, equipment, materials and talent.</li>
+        <li><b>28 Feb 2026</b> · Micron Sanand ATMP inaugurated: DRAM & NAND packaging and test.</li>
+        <li><b>31 Mar 2026</b> · Kaynes Semicon OSAT inaugurated at Sanand.</li>
+        <li><b>Jul 2026</b> · CG Semi OSAT at Sanand begins commercial production.</li>
+        <li><b>Sep 2026</b> · Semicon 2.0 targets 200 chip-design startups/companies and 1 lakh technicians; 70,000 design engineers already trained.</li>
+        <li><b>2026–28</b> · Tata–PSMC 28nm wafer fab at Dholera moves toward first production (reported timelines vary).</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>BTech vs MTech vs MS: realistic outcomes</h2>
+      <div class="sub">Reported placement figures; your result depends far more on skills than averages</div>
+      <div class="paths" style="margin-top:10px">
+        <div class="path" style="--c:#2dd4bf"><h4>BTech ECE · Tier-1 (IIT/NIT/IIIT/BITS)</h4>Core recruiters visit campus. ECE averages are high (e.g., NIT Trichy ECE ≈₹21.7 LPA reported), but a large share of offers are software roles.</div>
+        <div class="path" style="--c:#f59e0b"><h4>BTech ECE · Tier-2 / Tier-3</h4>Campus offers are mostly IT recruiters (≈₹3–6 LPA typical). Core jobs come through projects, internships and off-campus drives to semiconductor GCCs.</div>
+        <div class="path" style="--c:#a78bfa"><h4>MTech VLSI / Microelectronics (IIT)</h4>IIT Delhi MTech VLSI median ≈₹15 LPA, with averages reported up to ≈₹22 LPA. Recruiters include Intel, Qualcomm, TI, NVIDIA, AMD, Cadence and Synopsys.</div>
+        <div class="path" style="--c:#60a5fa"><h4>MTech Comm / SP / RF · Embedded / Power</h4>Fewer openings than VLSI, but strong R&D roles in 5G/6G, radar, defence, EV and data-centre power. Pairing with ML raises demand.</div>
+        <div class="path" style="--c:#f472b6"><h4>MS abroad</h4>Highest pay ceiling (US hardware-engineer median $161,740), but US visa policy is volatile in 2026. See the global section.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SALARY -->
+  <div class="section-title" id="salary"><h2>2 · Salaries in India by specialization</h2><span>₹ lakh per annum (LPA), CTC</span></div>
+  <div class="grid2">
+    <section class="card">
+      <div class="card-head"><div><h2>Fresher vs mid-career pay bands</h2>
+        <div class="sub">Typical ranges across service, startup and product companies. Top MNCs can exceed these.</div></div></div>
+      <div class="chart-box tall"><canvas id="salaryChart"></canvas></div>
+    </section>
+    <section class="card">
+      <h2>Salary benchmarks that matter</h2>
+      <div class="sub">Compiled from 2026 salary guides (AmbitionBox/Payscale-based) and placement reports</div>
+      <div class="paths" style="margin-top:10px">
+        <div class="path" style="--c:#22c55e"><h4>Top-tier fresher offers</h4>NVIDIA India hardware/ASIC freshers ≈₹22–28 LPA CTC (incl. RSUs); Qualcomm ≈₹17–23 LPA (reported 2026).</div>
+        <div class="path" style="--c:#60a5fa"><h4>Typical VLSI fresher</h4>≈₹4–7 LPA at many firms; ₹6–12 LPA at product companies with strong skills.</div>
+        <div class="path" style="--c:#a78bfa"><h4>Verification premium</h4>DV often pays 5–10% more than equivalent RTL roles and has the most entry-level openings, because each design team needs several verification engineers.</div>
+        <div class="path" style="--c:#f59e0b"><h4>Senior ceiling (10+ years)</h4>Senior DV, physical design, analog and architecture roles reach ≈₹40–85+ LPA at top companies; principal and architect roles go higher.</div>
+        <div class="path" style="--c:#f472b6"><h4>Product vs service gap</h4>The same title can pay 2–3× more at a product MNC or GCC than at a service company. Choosing the right employer matters as much as the specialization.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- AI IMPACT -->
+  <div class="section-title" id="ai"><h2>3 · How AI is changing ECE hiring</h2><span>Tasks are being automated, not whole professions</span></div>
+  <div class="grid2">
+    <section class="card">
+      <h2>AI automation exposure by task</h2>
+      <div class="sub">0 = hard to automate, 100 = highly automatable today. Analyst assessment based on 2026 EDA-agent capabilities.</div>
+      <div class="chart-box mid"><canvas id="taskChart"></canvas></div>
+    </section>
+    <section class="card">
+      <h2>The evidence, both ways</h2>
+      <div class="sub">What the 2026 data says</div>
+      <div class="ev" style="margin-top:10px">
+        <div class="pos">
+          <h4>Reasons not to fear</h4>
+          <ul>
+            <li>The global chip workforce must grow by 1M+ by 2030; the US alone faces a 67,000-worker gap. <span class="src">Deloitte · SIA</span></li>
+            <li>India chip-design GCC openings rose 46% from Jan to Mar 2026, with Hyderabad emerging alongside Bengaluru. <span class="src">Careernet</span></li>
+            <li>Nearly one-fifth of the world’s chip-design talent is already in India. <span class="src">Taggd</span></li>
+            <li>Cadence says AI agents will make design teams more productive, not replace design engineers, with engineers kept in the loop. <span class="src">Cadence, Mar 2026</span></li>
+            <li>AI is driving chip demand: Synopsys tied its Q2 FY26 results to AI-related design activity. <span class="src">Futurum</span></li>
+            <li>Lab, fab, analog and RF work is bound to physical hardware, which is hard to automate.</li>
+          </ul>
+        </div>
+        <div class="neg">
+          <h4>Reasons to act now</h4>
+          <ul>
+            <li>Industry experts expect AI to remove many entry-level chip-design tasks that are repetitive and data-heavy. <span class="src">SemiEngineering</span></li>
+            <li>Vendors claim AI agents cut a five-week verification loop to under a day (Cadence) and reach validated RTL up to 50× faster (Synopsys). <span class="src">vendor claims, 2026</span></li>
+            <li>In India, only ≈15,000 of 1.19 lakh tech openings were entry-level in Mar 2026 (−10% YoY), and IT-services openings fell 16%. <span class="src">Xpheno</span></li>
+            <li>Firms report hiring moderation concentrated at entry level. <span class="src">ICRIER, Feb 2026</span></li>
+            <li>AI-skilled graduates were 60% of TCS’s FY26 fresher hires, up from 10–15% three years earlier. <span class="src">TCS</span></li>
+            <li>Hiring is shifting from volume to niche, specialised skills. <span class="src">Careernet</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SAFEST -->
+  <div class="section-title" id="safe"><h2>4 · Safest specializations in the AI era</h2><span>Click any bubble or card to open it in the career navigator</span></div>
+  <div class="grid2">
+    <section class="card">
+      <h2>Demand vs AI exposure</h2>
+      <div class="sub">Bubble size = mid-career pay ceiling. Analyst assessment synthesised from 2026 hiring and EDA-automation evidence.</div>
+      <div class="chart-box tall"><canvas id="matrixChart"></canvas></div>
+    </section>
+    <section class="card">
+      <h2>AI-era safety score</h2>
+      <div class="sub">Score = 55% demand outlook + 45% resistance to automation (100 − exposure)</div>
+      <div class="chart-box tall"><canvas id="safetyChart"></canvas></div>
+    </section>
+  </div>
+  <section class="card">
+    <h2 style="margin-bottom:10px">Top 5 safest bets</h2>
+    <div class="top5" id="top5"></div>
+    <div class="note"><b>Important nuance:</b> design verification has the most entry-level openings today, so it is often the easiest way in. It is also the top target of EDA AI agents. If you enter through DV, grow toward verification planning, formal methods, debug and AI-agent orchestration, not repetitive testbench work.</div>
+  </section>
+
+  <!-- NAVIGATOR -->
+  <div class="section-title" id="navigator"><h2>5 · Career navigator</h2><span>Pick your profile to get a personalised outlook</span></div>
+  <section class="card">
+    <div class="navi">
+      <div class="ctrl">
+        <label>Specialization<select id="nSpec"></select></label>
+        <label>Degree
+          <select id="nDeg">
+            <option value="btech">BTech ECE</option>
+            <option value="mtech">MTech (VLSI / ECE / Comm / Embedded)</option>
+            <option value="ms">MS abroad</option>
+          </select>
+        </label>
+        <label>College tier
+          <select id="nTier">
+            <option value="1">Tier-1 (IIT / NIT / IIIT / BITS)</option>
+            <option value="2" selected>Tier-2</option>
+            <option value="3">Tier-3</option>
+          </select>
+        </label>
+        <label>Target market
+          <select id="nMkt">
+            <option value="in">India</option>
+            <option value="gl">Abroad</option>
+          </select>
+        </label>
+      </div>
+      <div class="nav-out" id="nOut"></div>
+    </div>
+  </section>
+
+  <!-- GLOBAL -->
+  <div class="section-title" id="global"><h2>6 · India vs global</h2><span>Demand, pay and mobility</span></div>
+  <div class="grid2">
+    <section class="card">
+      <h2>US pay for hardware & electronics engineers</h2>
+      <div class="sub">BLS OEWS, May 2025, annual wage percentiles (all experience levels)</div>
+      <div class="chart-box mid"><canvas id="usPayChart"></canvas></div>
+    </section>
+    <section class="card">
+      <h2>How the markets compare</h2>
+      <div class="tbl-wrap" style="margin-top:8px">
+        <table>
+          <thead><tr><th></th><th>India</th><th>United States</th><th>Rest of world</th></tr></thead>
+          <tbody>
+            <tr><td>Demand</td><td>Rising: design-GCC openings +46% in Q1 2026; fabs and OSATs coming online; Semicon 2.0</td><td>67,000-worker shortfall projected by 2030 (SIA); AI-chip boom</td><td>Europe 100k+ and APAC 200k+ shortfalls (SEMI); Singapore lists semiconductor engineers as shortage occupations</td></tr>
+            <tr><td>Pay</td><td>≈₹5–12 LPA typical core fresher; ₹17–28 LPA at top MNCs</td><td>Hardware engineers: $92,940 (10th pct) → $161,740 median → $225,330 (90th)</td><td>Varies widely by country and company</td></tr>
+            <tr><td>Entry route</td><td>Campus / off-campus; GATE → MTech; ISM EDA-trained skills</td><td>MS (F-1) → OPT / STEM-OPT → H-1B</td><td>MS plus employer-sponsored work visas (EU Blue Card, Singapore EP, Japan, Taiwan)</td></tr>
+            <tr><td>Policy risk</td><td>Low</td><td>$100k fee on new H-1B petitions for workers outside the US, extended to Sep 2027 amid court challenges</td><td>Generally more predictable; language can matter (Japan, Taiwan, Germany)</td></tr>
+            <tr><td>AI exposure</td><td colspan="3">The same everywhere at task level: routine verification, testing, scripting and documentation are automated first. Hands-on, physics-bound and judgment-heavy work holds up best.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">H-1B policy has changed several times in 2025–26: a court struck the fee down in June 2026, and the administration then extended it to Sep 2027 while litigation continues. Check the current status before planning an MS.</div>
+    </section>
+  </div>
+
+  <!-- PLAN -->
+  <div class="section-title" id="plan"><h2>7 · The AI-proof action plan</h2><span>What to do in college, step by step</span></div>
+  <section class="card">
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Master what AI can’t fake</h4>Analog circuits, semiconductor devices, digital design, signals & systems and computer architecture. These fundamentals are what let you judge AI output.</div>
+      <div class="step"><div class="n">2</div><h4>Pick one deep track by 3rd year</h4>Choose analog, PD, DV, RTL, embedded, RF or power. Hiring now favours niche depth over generalists.</div>
+      <div class="step"><div class="n">3</div><h4>Make AI your co-pilot</h4>Use LLMs to draft SystemVerilog, UVM, TCL and Python, then review every line. Learn the AI features in Cadence and Synopsys flows; employers now pay a premium for AI-skilled freshers.</div>
+      <div class="step"><div class="n">4</div><h4>Get real tool & hardware time</h4>Use ISM’s national EDA access (≈67,000 students already use it), open-source flows (OpenROAD, OpenLane), FPGAs and the lab bench. Aim for a tape-out or a working board.</div>
+      <div class="step"><div class="n">5</div><h4>Build public proof</h4>Put RTL, testbenches and projects on GitHub. Target internships at semiconductor GCCs in Bengaluru, Hyderabad, Noida and Pune, including small and mid-size centres.</div>
+      <div class="step"><div class="n">6</div><h4>Choose higher studies deliberately</h4>Do a GATE → IIT/NIT MTech for analog, RF and AI hardware. Consider an MS abroad only with a visa-risk plan. Avoid treating IT services as a destination.</div>
+    </div>
+  </section>
+
+  <footer class="card">
+    <b>Sources.</b> Careernet, India’s Semiconductor Design GCC Talent Ecosystem (Q1 CY2026 and CY2025); Taggd, India Decoding Jobs 2026; MeitY / Ashwini Vaishnaw statements at SEMICON India 2026 (Semicon 2.0); Union Budget 2026–27 (ISM 2.0); Deloitte, Global Semiconductor Talent Shortage; SIA & Oxford Economics (2023); SEMI workforce estimates; US BLS OEWS May 2025; Xpheno tech hiring report (Mar 2026); ICRIER (Feb 2026); TCS statements (Mar–Apr 2026); Cadence and Synopsys 2026 announcements; SemiEngineering; Tom’s Hardware (state of agentic AI in EDA, 2026); Business Standard (H-1B, Sep 2026); 2026 salary guides (Futurense, ChipXpert, GUVI, Payscale, AmbitionBox-based); institute placement reports.<br>
+    <b>Notes.</b> Salary bands are indicative and vary sharply by company, city and skill. AI-exposure, demand and safety scores are an analyst synthesis of the evidence above, not survey results. Vendor speed-up claims are unverified marketing figures. Placement averages are as reported and can be skewed by a few high offers; medians are more realistic.
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const hasChart = typeof window.Chart !== "undefined";
+  if (!hasChart) $("warn").style.display = "block";
+  const GRID = "rgba(255,255,255,0.06)";
+
+  /* ============================ DATA ============================ */
+  const GROUP = {
+    safe:  { label: "Safest (low exposure, high demand)", color: "#22c55e" },
+    mid:   { label: "Solid (moderate exposure)", color: "#60a5fa" },
+    watch: { label: "In demand but AI-exposed", color: "#f59e0b" },
+    risk:  { label: "Most exposed", color: "#ef4444" }
+  };
+
+  // exp = AI automation exposure (0–100), dem = demand outlook 2026–2035 (0–100)
+  // pay = fresher band (₹ LPA), mid = 3–7 yrs band (₹ LPA). Analyst synthesis.
+  const SPECS = [
+    { id: "ams", name: "Analog / Mixed-Signal IC Design", short: "Analog/AMS", exp: 24, dem: 89, pay: [6, 14], mid: [15, 35], group: "safe",
+      deg: "MTech/PhD strongly preferred",
+      skills: "Device physics, op-amps, noise & mismatch, ADC/DAC, PLL, LDO/bandgap, Cadence Virtuoso & Spectre",
+      employers: "TI, ADI, Qualcomm, Intel, MediaTek, Renesas, Infineon, NXP, Microchip",
+      ai: "AI helps with transistor sizing and layout migration, but specs, trade-offs and silicon debug stay human. Training data is scarce and every design is physics-bound.",
+      act: ["Master analog fundamentals: op-amps, feedback, noise, mismatch", "Design and simulate a bandgap/LDO/ADC block in Virtuoso (ISM EDA access or college lab)", "Learn layout-aware design and Python for sweeps; try AI-based sizing tools"] },
+    { id: "rf", name: "RF / mmWave IC & Antenna Design", short: "RF/mmWave", exp: 20, dem: 75, pay: [5, 12], mid: [14, 30], group: "safe",
+      deg: "MTech preferred",
+      skills: "EM theory, S-parameters, LNA/PA/mixers, HFSS/ADS, VNA & lab measurement",
+      employers: "Qualcomm, Samsung, MediaTek, Apple, ISRO, DRDO, BEL, satellite & radar startups",
+      ai: "Simulation-heavy and measurement-bound. AI speeds up optimisation loops but cannot replace lab characterisation.",
+      act: ["Strengthen EM, transmission lines and S-parameters", "Build and measure an antenna or LNA on PCB with a VNA", "Add MATLAB/Python RF system modelling; follow 6G, satcom and radar work"] },
+    { id: "aihw", name: "AI Hardware / Accelerator & SoC Architecture", short: "AI Hardware", exp: 32, dem: 94, pay: [8, 28], mid: [25, 60], group: "safe",
+      deg: "MTech/MS strongly preferred",
+      skills: "Computer architecture, RTL, dataflow & memory hierarchy, HLS, performance modelling, Python, ML basics",
+      employers: "NVIDIA, AMD, Intel, Qualcomm, Google, Microsoft, Arm, Indian AI-chip startups",
+      ai: "The AI boom is the demand driver itself. Architecture and power-performance-area trade-offs stay human-led.",
+      act: ["Study computer architecture and ML workloads in depth", "Build a small accelerator (systolic array / MAC unit) in RTL on an FPGA", "Learn performance modelling in Python and HLS; read accelerator papers"] },
+    { id: "fab", name: "Semiconductor Process, Fab & Advanced Packaging", short: "Fab/Packaging", exp: 28, dem: 84, pay: [4, 9], mid: [10, 24], group: "safe",
+      deg: "BTech or MTech (process, materials, yield)",
+      skills: "Device fabrication, lithography/etch basics, SPC & yield analysis, reliability, cleanroom protocols, 2.5D/3D packaging",
+      employers: "Micron Sanand, Tata Electronics (Dholera, Assam), Kaynes, CG Semi, HCL-Foxconn, Applied Materials, Lam, KLA",
+      ai: "Physical, hands-on and safety-critical. AI improves yield analytics, but it needs engineers on the fab floor.",
+      act: ["Learn device fabrication, SPC, DOE and yield analysis", "Target trainee roles at Micron, Tata Electronics, Kaynes and CG Semi", "Add Python/JMP data analytics for yield; this is where AI helps you"] },
+    { id: "power", name: "Power Electronics & Power-Management ICs (EV, data centres)", short: "Power/EV", exp: 27, dem: 79, pay: [4, 10], mid: [10, 26], group: "safe",
+      deg: "BTech OK; MTech for the IC side",
+      skills: "Converters, motor drives, BMS, magnetics, PMIC design, thermal, LTspice/PLECS, safety standards",
+      employers: "Infineon, TI, ADI, Tata Motors, Ather, Ola Electric, Delta, Schneider, ABB",
+      ai: "Safety certification, thermal design and hardware testing keep humans essential. Power for AI data centres is a new demand wave.",
+      act: ["Master converters, control loops and magnetics", "Build a buck/boost or BMS project; simulate in LTspice/PLECS", "Learn functional-safety basics (ISO 26262) for EV roles"] },
+    { id: "pv", name: "Post-Silicon Validation & Lab Bring-up", short: "Post-Si Validation", exp: 16, dem: 69, pay: [5, 11], mid: [12, 28], group: "safe",
+      deg: "BTech OK",
+      skills: "Oscilloscopes, logic analysers, JTAG, board bring-up, PCIe/DDR/USB debug, Python automation",
+      employers: "Intel, AMD, Qualcomm, NVIDIA, Micron, Microsoft & Google hardware teams",
+      ai: "Physical silicon and boards need hands-on debug. AI helps analyse logs; it cannot probe hardware.",
+      act: ["Get comfortable with lab instruments and board bring-up", "Learn high-speed protocols (PCIe, DDR, USB) and JTAG debug", "Automate tests with Python; use AI for log analysis"] },
+    { id: "pd", name: "Physical Design & STA Signoff", short: "Physical Design", exp: 45, dem: 85, pay: [5, 11], mid: [14, 32], group: "mid",
+      deg: "BTech OK; MTech helps",
+      skills: "Floorplan, place & route, CTS, STA, IR/EM, DRC/LVS, Innovus/ICC2/PrimeTime, TCL",
+      employers: "Qualcomm, Intel, AMD, NVIDIA, MediaTek, Synopsys, Cadence, design-service firms",
+      ai: "Machine learning already tunes place-and-route. Signoff judgment at 3nm/2nm and in 3D-IC stays scarce, but routine runs are being automated.",
+      act: ["Learn the full RTL-to-GDSII flow and STA deeply", "Practise with OpenROAD/OpenLane, then Innovus or ICC2", "Master TCL/Python and ML-driven PnR optimisation options"] },
+    { id: "emb", name: "Embedded Systems, Firmware & Edge AI", short: "Embedded/Edge AI", exp: 44, dem: 77, pay: [3.5, 11], mid: [10, 30], group: "mid",
+      deg: "BTech OK",
+      skills: "Embedded C/C++, RTOS, ARM MCUs, drivers, I2C/SPI/CAN, Embedded Linux, TinyML, AUTOSAR",
+      employers: "Bosch, Continental, Tata Elxsi, L&T Technology Services, Qualcomm, NXP, automotive & IoT firms",
+      ai: "AI writes boilerplate code, but hardware constraints, real-time debugging and safety standards keep this specialist work.",
+      act: ["Master embedded C, RTOS, drivers and ARM Cortex-M", "Build an edge-AI project (TinyML on an MCU) and a CAN/automotive project", "Learn Embedded Linux and ISO 26262 / AUTOSAR basics"] },
+    { id: "sp", name: "Signal Processing & Communication Algorithms", short: "Signal Processing", exp: 50, dem: 66, pay: [5, 12], mid: [12, 30], group: "mid",
+      deg: "MTech preferred",
+      skills: "DSP, estimation, MIMO/OFDM, MATLAB/Python, ML for signals, fixed-point implementation",
+      employers: "Qualcomm, Samsung R&D, Ericsson, Nokia, TI, defence labs",
+      ai: "Overlaps heavily with ML. Engineers who combine DSP and ML gain; pure algorithm-coding roles face AI competition.",
+      act: ["Combine DSP with ML for signals (radar, comms, audio)", "Implement algorithms in fixed-point C and on FPGA", "Target 5G/6G physical-layer and defence R&D roles"] },
+    { id: "rtl", name: "RTL / Digital Design", short: "RTL Design", exp: 56, dem: 74, pay: [5, 12], mid: [14, 35], group: "watch",
+      deg: "MTech preferred at top firms",
+      skills: "Verilog/SystemVerilog, micro-architecture, CDC/RDC, low-power design, synthesis, timing",
+      employers: "Qualcomm, Intel, AMD, NVIDIA, Arm, MediaTek, Samsung",
+      ai: "LLMs can write standard blocks. Micro-architecture, PPA trade-offs and integration stay human. Expect fewer, more senior RTL roles.",
+      act: ["Go deep on micro-architecture, CDC and low-power design", "Build a RISC-V core or peripherals in Verilog and run it on an FPGA", "Use LLMs to draft RTL, but own the spec, the review and the trade-offs"] },
+    { id: "dv", name: "Design Verification (SystemVerilog / UVM)", short: "Verification", exp: 66, dem: 81, pay: [5, 12], mid: [15, 40], group: "watch",
+      deg: "BTech OK (largest entry pool)",
+      skills: "SystemVerilog, UVM, SVA, coverage, formal basics, Python, AI-assisted verification tools",
+      employers: "Every chip company; the largest number of openings",
+      ai: "Highest current demand, but the #1 target of EDA AI agents. Routine testbench and regression work is shrinking; verification planning, formal methods and debug are growing in value.",
+      act: ["Learn SystemVerilog, UVM and SVA properly; publish 2–3 UVM testbenches", "Add formal verification and coverage-driven planning", "Learn to drive AI verification agents; planning and debug are the durable skills"] },
+    { id: "dft", name: "DFT (Design for Test)", short: "DFT", exp: 58, dem: 64, pay: [5, 10], mid: [14, 28], group: "watch",
+      deg: "BTech OK",
+      skills: "Scan, ATPG, MBIST, JTAG, Tessent/TestMAX, silicon test debug",
+      employers: "Qualcomm, Intel, NVIDIA, Synopsys, Siemens EDA, design services",
+      ai: "Flows are highly tool-driven and automating fast; silicon test debug remains human.",
+      act: ["Learn scan, ATPG, MBIST and JTAG", "Pair DFT with silicon test and yield debug to stay valuable", "Script flows in TCL/Python; track AI test-generation tools"] },
+    { id: "tel", name: "Telecom Network Ops & RF Planning / Field Testing", short: "Telecom Ops", exp: 62, dem: 50, pay: [3, 8], mid: [10, 18], group: "risk",
+      deg: "BTech",
+      skills: "5G RAN, drive testing, optimisation, Open RAN, network-automation scripting",
+      employers: "Jio, Airtel, Ericsson, Nokia, Samsung Networks, tower & service firms",
+      ai: "Self-optimising, AI-native networks automate planning and optimisation. Move toward Open RAN software, automation or 6G R&D.",
+      act: ["Shift from field ops to Open RAN, cloud-native RAN and network automation", "Learn Python, Kubernetes basics and RAN Intelligent Controller (RIC) concepts", "Consider pivoting to RF IC or signal-processing R&D"] },
+    { id: "it", name: "Generic IT Services / Manual Testing (non-core)", short: "IT Services", exp: 82, dem: 34, pay: [3.5, 7], mid: [6, 14], group: "risk",
+      deg: "Any",
+      skills: "General programming, manual testing, support",
+      employers: "Large IT services firms",
+      ai: "Most exposed. IT-services openings fell 16% YoY (Mar 2026), and entry-level work is being automated first.",
+      act: ["Treat IT services as a bridge, not a destination", "Build a core skill (embedded, DV, PD) with real projects alongside the job", "Or go deep into AI engineering, where IT firms pay premiums to AI-skilled freshers"] }
+  ];
+  SPECS.forEach(s => { s.score = Math.round(0.55 * s.dem + 0.45 * (100 - s.exp)); });
+
+  const TASKS = [
+    ["Scripting, reports & documentation", 85],
+    ["Manual / repetitive software testing", 85],
+    ["Testbench boilerplate & regression triage", 80],
+    ["Lint, CDC & rule-check cleanup", 75],
+    ["Place-and-route parameter tuning", 70],
+    ["Standard-block RTL coding", 65],
+    ["Custom analog / RF layout", 45],
+    ["Verification planning & coverage closure", 40],
+    ["Timing / IR signoff judgment (advanced nodes)", 30],
+    ["Analog circuit design & sizing", 30],
+    ["Micro-architecture & PPA trade-offs", 25],
+    ["Fab process & yield engineering", 25],
+    ["System-level & customer problem solving", 20],
+    ["Lab bring-up & silicon debug", 15],
+    ["RF / antenna measurement & characterisation", 15]
+  ];
+
+  const KPIS = [
+    { v: "≈2.2 lakh", l: "India semiconductor workforce", s: "Projected by FY2026 (Taggd)", c: "#2dd4bf" },
+    { v: "3,549", l: "Open roles, India chip-design GCCs", s: "Mar 2026 · +46% vs Jan (Careernet)", c: "#60a5fa" },
+    { v: "70,000", l: "Chip-design engineers trained", s: "In 4 years under ISM (target was 85k in 10)", c: "#a78bfa" },
+    { v: "1M+", l: "Extra chip workers needed globally", s: "By 2030 (Deloitte)", c: "#22c55e" },
+    { v: "$161,740", l: "US hardware-engineer median pay", s: "BLS, May 2025", c: "#f59e0b" },
+    { v: "15k of 1.19L", l: "Entry-level share of India tech openings", s: "Mar 2026 · −10% YoY (Xpheno)", c: "#ef4444" },
+    { v: "60%", l: "TCS freshers who are AI-skilled", s: "FY26, up from 10–15% three years earlier", c: "#f472b6" },
+    { v: "₹22–28 LPA", l: "Top chip-design fresher CTC", s: "e.g. NVIDIA India, 2026 (incl. RSUs)", c: "#2dd4bf" }
+  ];
+
+  const METERS = [
+    { t: "Analog, RF, AI hardware, fab & power", v: 20, lab: "Low", c: "#22c55e" },
+    { t: "Physical design, embedded, post-silicon validation", v: 40, lab: "Low–moderate", c: "#60a5fa" },
+    { t: "Verification, RTL, DFT (routine tasks)", v: 62, lab: "Moderate: tasks shrink, roles evolve", c: "#f59e0b" },
+    { t: "Telecom field ops & generic IT services", v: 82, lab: "High", c: "#ef4444" }
+  ];
+
+  /* ============================ STATIC RENDER ============================ */
+  $("kpis").innerHTML = KPIS.map(k =>
+    `<div class="kpi" style="--c:${k.c}"><div class="v">${k.v}</div><div class="l">${k.l}</div><div class="s">${k.s}</div></div>`).join("");
+
+  $("meters").innerHTML = `<div class="eyebrow" style="margin-bottom:10px">AI displacement risk, 2026–2030</div>` +
+    METERS.map(m => `<div class="meter"><div class="top"><span>${m.t}</span><b style="color:${m.c}">${m.lab}</b></div>
+      <div class="bar"><div class="fill" style="width:${m.v}%;background:${m.c}"></div></div></div>`).join("") +
+    `<div class="sub">Analyst assessment of how fast AI removes work in each area, not a forecast of job losses.</div>`;
+
+  const ranked = SPECS.slice().sort((a, b) => b.score - a.score);
+  $("top5").innerHTML = ranked.slice(0, 5).map((s, i) =>
+    `<div class="t5" data-id="${s.id}"><div class="rank">#${i + 1} safest</div><h3>${s.name}</h3>
+     <div class="score">${s.score}<span style="font-size:12px;color:var(--muted);font-weight:500"> / 100</span></div><p>${s.ai}</p></div>`).join("");
+  document.querySelectorAll(".t5").forEach(el => el.addEventListener("click", () => openInNavigator(el.dataset.id)));
+
+  /* ============================ NAVIGATOR ============================ */
+  const sel = $("nSpec");
+  ranked.forEach(s => {
+    const o = document.createElement("option");
+    o.value = s.id; o.textContent = s.name;
+    sel.appendChild(o);
+  });
+  const r2 = x => Math.round(x * 2) / 2;
+  function band(s, tier) {
+    const [a, b] = s.pay, m = (a + b) / 2;
+    if (tier === "1") return [r2(m), b];
+    if (tier === "2") return [r2(a + (b - a) * 0.25), r2(a + (b - a) * 0.7)];
+    return [a, r2(m)];
+  }
+  function risk(e) {
+    if (e < 35) return ["Low AI exposure", "#22c55e"];
+    if (e < 55) return ["Moderate AI exposure", "#60a5fa"];
+    if (e < 70) return ["Elevated AI exposure", "#f59e0b"];
+    return ["High AI exposure", "#ef4444"];
+  }
+  function demandLabel(d) {
+    if (d >= 85) return "Very strong";
+    if (d >= 70) return "Strong";
+    if (d >= 55) return "Moderate";
+    return "Weak";
+  }
+  function renderNav() {
+    const s = SPECS.find(x => x.id === sel.value);
+    const deg = $("nDeg").value, tier = $("nTier").value, mkt = $("nMkt").value;
+    const [rl, rc] = risk(s.exp);
+    const fb = band(s, tier);
+
+    let degNote;
+    if (deg === "btech") {
+      degNote = /preferred/.test(s.deg)
+        ? "Top employers in this track often prefer an MTech or MS. A BTech can still get in with strong projects and internships; GATE → MTech at an IIT/NIT is a high-return route."
+        : "A BTech is a normal entry point here. Projects, tool and lab skills, and internships matter more than a second degree.";
+    } else if (deg === "mtech") {
+      degNote = "An MTech fits this track well. Aim for thesis work with real tools, and a tape-out or hardware project. MTech VLSI medians at top IITs are reported around ₹15 LPA, with averages up to ≈₹22 LPA.";
+    } else {
+      degNote = "An MS (US/Europe) opens global hardware roles; the US median for hardware engineers is $161,740 (BLS, May 2025). Plan for visa risk: the $100k fee on new H-1B petitions for workers outside the US is extended to Sep 2027 amid court challenges. F-1 → OPT/STEM-OPT → change of status inside the US is the usual path.";
+    }
+
+    const tierNote = {
+      "1": "Tier-1 campuses get core recruiters on campus. Top offers can exceed this band (≈₹17–28 LPA reported at Qualcomm and NVIDIA).",
+      "2": "At Tier-2 colleges some core companies visit. Add off-campus applications to semiconductor GCCs in Bengaluru, Hyderabad, Noida and Pune.",
+      "3": "Tier-3 campus placements are mostly IT recruiters (≈₹3–6 LPA typical). Break into core roles through projects, recognised training, internships and off-campus drives. Skills outweigh college name here."
+    }[tier];
+
+    const mktNote = mkt === "in"
+      ? "India: chip-design GCC openings reached 3,549 in Mar 2026; fabs and OSATs are coming online in Gujarat and Assam; Semicon 2.0 targets 200 chip-design firms and 1 lakh technicians."
+      : "Abroad: the industry needs 1M+ extra workers by 2030 (US 67k shortfall, Europe 100k+, APAC 200k+). US hardware engineers earn $92,940 (10th pct) to $225,330 (90th pct). Visa routes are the main constraint.";
+
+    $("nOut").innerHTML = `
+      <h3>${s.name}</h3>
+      <div class="chips">
+        <span class="chip" style="border-color:${rc};color:${rc}"><b>${rl}</b> (${s.exp}/100)</span>
+        <span class="chip"><b>Demand:</b> ${demandLabel(s.dem)} (${s.dem}/100)</span>
+        <span class="chip"><b>Safety score:</b> ${s.score}/100</span>
+        <span class="chip"><b>Your likely fresher band:</b> ₹${fb[0]}–${fb[1]} LPA</span>
+        <span class="chip"><b>Mid-career (3–7 yrs):</b> ₹${s.mid[0]}–${s.mid[1]} LPA</span>
+      </div>
+      <div class="nav-grid">
+        <div class="box"><span class="k">AI outlook</span>${s.ai}</div>
+        <div class="box"><span class="k">Your next 3 moves</span><ol>${s.act.map(a => `<li>${a}</li>`).join("")}</ol></div>
+        <div class="box"><span class="k">Core skills</span>${s.skills}</div>
+        <div class="box"><span class="k">Typical employers</span>${s.employers}</div>
+        <div class="box"><span class="k">Degree fit · ${s.deg}</span>${degNote}</div>
+        <div class="box"><span class="k">College tier & market</span>${tierNote}<br><br>${mktNote}</div>
+      </div>
+      <div class="sub" style="margin-top:10px">The band is indicative for India. Product MNCs and GCCs pay well above service companies for the same title.</div>`;
+  }
+  ["nSpec", "nDeg", "nTier", "nMkt"].forEach(id => $(id).addEventListener("change", renderNav));
+  function openInNavigator(id) {
+    sel.value = id;
+    renderNav();
+    $("navigator").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  sel.value = ranked[0].id;
+  renderNav();
+
+  /* ============================ CHARTS ============================ */
+  if (!hasChart) return;
+
+  Chart.defaults.color = "#93a1ba";
+  Chart.defaults.font.family = "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif";
+  Chart.defaults.font.size = 11.5;
+  Chart.defaults.maintainAspectRatio = false;
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.boxWidth = 8;
+  Chart.defaults.plugins.tooltip.backgroundColor = "rgba(7,13,26,.95)";
+  Chart.defaults.plugins.tooltip.borderColor = "rgba(255,255,255,.15)";
+  Chart.defaults.plugins.tooltip.borderWidth = 1;
+  Chart.defaults.plugins.tooltip.padding = 10;
+
+  const valueLabels = fmt => ({
+    id: "valueLabels",
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart, horiz = chart.options.indexAxis === "y";
+      ctx.save();
+      ctx.fillStyle = "#e8edf6";
+      ctx.font = "600 11.5px Inter, system-ui, sans-serif";
+      chart.data.datasets.forEach((ds, di) => {
+        if (!chart.isDatasetVisible(di)) return;
+        chart.getDatasetMeta(di).data.forEach((bar, i) => {
+          const v = ds.data[i];
+          if (typeof v !== "number") return;
+          if (horiz) {
+            ctx.textBaseline = "middle"; ctx.textAlign = v >= 0 ? "left" : "right";
+            ctx.fillText(fmt(v), bar.x + (v >= 0 ? 6 : -6), bar.y);
+          } else {
+            ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+            ctx.fillText(fmt(v), bar.x, bar.y - 4);
+          }
+        });
+      });
+      ctx.restore();
+    }
+  });
+
+  // 1. GCC open roles
+  new Chart($("gccChart"), {
+    type: "bar",
+    data: { labels: ["Jan 2026", "Feb 2026", "Mar 2026"],
+      datasets: [{ data: [2426, 3077, 3549], backgroundColor: ["rgba(45,212,191,.5)", "rgba(45,212,191,.7)", "rgba(45,212,191,.95)"], borderRadius: 8, maxBarThickness: 70 }] },
+    options: {
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: it => ` ${it.parsed.y.toLocaleString()} open roles` } } },
+      scales: { y: { min: 0, max: 4200, grid: { color: GRID } }, x: { grid: { display: false } } }
+    },
+    plugins: [valueLabels(v => v.toLocaleString())]
+  });
+
+  // 2. Role mix
+  new Chart($("mixChart"), {
+    type: "doughnut",
+    data: {
+      labels: ["VLSI design (37–45%)", "System & app software (39–46%)", "Business ops & IT infra (10–18%)"],
+      datasets: [{ data: [41, 42.5, 14], backgroundColor: ["#2dd4bf", "#60a5fa", "#a78bfa"], borderColor: "#0f1729", borderWidth: 3 }]
+    },
+    options: { cutout: "60%", plugins: { legend: { position: "bottom" }, tooltip: { callbacks: { label: it => ` ${it.label}` } } } }
+  });
+
+  // 3. Hiring signals
+  const SIG = [
+    ["AI talent hiring, India (YoY, Apr 2026)", 59.5],
+    ["Chip-design GCC open roles (Jan→Mar 2026)", 46],
+    ["India entry-level tech openings (YoY, Mar 2026)", -10],
+    ["IT-services tech openings (YoY, Mar 2026)", -16]
+  ];
+  new Chart($("signalChart"), {
+    type: "bar",
+    data: { labels: SIG.map(s => s[0]),
+      datasets: [{ data: SIG.map(s => s[1]), backgroundColor: SIG.map(s => s[1] >= 0 ? "rgba(34,197,94,.85)" : "rgba(239,68,68,.85)"), borderRadius: 6 }] },
+    options: {
+      indexAxis: "y",
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: it => ` ${it.parsed.x > 0 ? "+" : ""}${it.parsed.x}%` } } },
+      scales: {
+        x: { min: -35, max: 80, grid: { color: GRID }, ticks: { callback: v => v + "%" } },
+        y: { grid: { display: false }, ticks: { font: { size: 10.5 }, callback: function (v) { const l = this.getLabelForValue(v); return l.length > 26 ? l.split(" (")[0] : l; } } }
+      }
+    },
+    plugins: [valueLabels(v => (v > 0 ? "+" : "") + v + "%")]
+  });
+
+  // 4. Salary bands (floating bars)
+  const salOrder = SPECS.slice().sort((a, b) => b.mid[1] - a.mid[1]);
+  new Chart($("salaryChart"), {
+    type: "bar",
+    data: {
+      labels: salOrder.map(s => s.short),
+      datasets: [
+        { label: "Fresher (0–2 yrs)", data: salOrder.map(s => s.pay), backgroundColor: "rgba(45,212,191,.8)", borderRadius: 4, barPercentage: 0.9, categoryPercentage: 0.75 },
+        { label: "Mid-career (3–7 yrs)", data: salOrder.map(s => s.mid), backgroundColor: "rgba(167,139,250,.8)", borderRadius: 4, barPercentage: 0.9, categoryPercentage: 0.75 }
+      ]
+    },
+    options: {
+      indexAxis: "y",
+      plugins: {
+        legend: { position: "top", align: "start" },
+        tooltip: { callbacks: { label: it => ` ${it.dataset.label}: ₹${it.raw[0]}–${it.raw[1]} LPA` } }
+      },
+      scales: {
+        x: { min: 0, max: 62, grid: { color: GRID }, ticks: { callback: v => "₹" + v + "L" }, title: { display: true, text: "₹ lakh per annum" } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // 5. Task exposure
+  new Chart($("taskChart"), {
+    type: "bar",
+    data: { labels: TASKS.map(t => t[0]),
+      datasets: [{ data: TASKS.map(t => t[1]),
+        backgroundColor: TASKS.map(t => t[1] >= 70 ? "rgba(239,68,68,.85)" : t[1] >= 45 ? "rgba(245,158,11,.85)" : "rgba(34,197,94,.85)"), borderRadius: 5 }] },
+    options: {
+      indexAxis: "y",
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: it => ` Exposure: ${it.parsed.x}/100` } } },
+      scales: { x: { min: 0, max: 105, grid: { color: GRID } }, y: { grid: { display: false }, ticks: { font: { size: 10.5 } } } }
+    },
+    plugins: [valueLabels(v => String(v))]
+  });
+
+  // 6. Demand vs exposure bubble matrix
+  const quadrants = {
+    id: "quadrants",
+    beforeDatasetsDraw(chart) {
+      const { ctx, chartArea: ca, scales: { x, y } } = chart;
+      if (!ca) return;
+      const xm = x.getPixelForValue(50), ym = y.getPixelForValue(60);
+      const zones = [
+        [ca.left, ca.top, xm - ca.left, ym - ca.top, "rgba(34,197,94,.09)", "SAFEST BETS"],
+        [xm, ca.top, ca.right - xm, ym - ca.top, "rgba(245,158,11,.08)", "IN DEMAND · UPSKILL WITH AI"],
+        [ca.left, ym, xm - ca.left, ca.bottom - ym, "rgba(96,165,250,.06)", "STABLE NICHES"],
+        [xm, ym, ca.right - xm, ca.bottom - ym, "rgba(239,68,68,.09)", "MOST EXPOSED"]
+      ];
+      ctx.save();
+      zones.forEach(([l, t, w, h, c, label], i) => {
+        ctx.fillStyle = c; ctx.fillRect(l, t, w, h);
+        ctx.fillStyle = "rgba(255,255,255,.35)";
+        ctx.font = "700 10px Inter, system-ui, sans-serif";
+        ctx.textAlign = i % 2 ? "right" : "left";
+        ctx.textBaseline = i < 2 ? "top" : "bottom";
+        ctx.fillText(label, i % 2 ? l + w - 8 : l + 8, i < 2 ? t + 6 : t + h - 6);
+      });
+      ctx.restore();
+    }
+  };
+  const bubbleLabels = {
+    id: "bubbleLabels",
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      ctx.save();
+      ctx.font = "600 11px Inter, system-ui, sans-serif";
+      ctx.fillStyle = "#e8edf6";
+      ctx.textBaseline = "middle";
+      chart.data.datasets.forEach((ds, di) => {
+        if (!chart.isDatasetVisible(di)) return;
+        chart.getDatasetMeta(di).data.forEach((pt, i) => {
+          const raw = ds.data[i], left = raw.x > 70, off = raw.r + 4;
+          ctx.textAlign = left ? "right" : "left";
+          ctx.fillText(raw.short, pt.x + (left ? -off : off), pt.y);
+        });
+      });
+      ctx.restore();
+    }
+  };
+  const matrix = new Chart($("matrixChart"), {
+    type: "bubble",
+    data: {
+      datasets: Object.keys(GROUP).map(g => ({
+        label: GROUP[g].label,
+        data: SPECS.filter(s => s.group === g).map(s => ({ x: s.exp, y: s.dem, r: 5 + s.mid[1] / 5, short: s.short, name: s.name, id: s.id })),
+        backgroundColor: GROUP[g].color + "aa",
+        borderColor: GROUP[g].color, borderWidth: 1.5
+      }))
+    },
+    options: {
+      plugins: {
+        legend: { position: "bottom" },
+        tooltip: { callbacks: { label: it => ` ${it.raw.name}: AI exposure ${it.raw.x}, demand ${it.raw.y}` } }
+      },
+      scales: {
+        x: { min: 0, max: 100, grid: { color: GRID }, title: { display: true, text: "AI automation exposure →" } },
+        y: { min: 25, max: 100, grid: { color: GRID }, title: { display: true, text: "Demand outlook 2026–2035 →" } }
+      },
+      onClick: (evt, els, chart) => {
+        if (!els.length) return;
+        const raw = chart.data.datasets[els[0].datasetIndex].data[els[0].index];
+        openInNavigator(raw.id);
+      },
+      onHover: (evt, els) => { evt.native.target.style.cursor = els.length ? "pointer" : "default"; }
+    },
+    plugins: [quadrants, bubbleLabels]
+  });
+
+  // 7. Safety score ranking
+  new Chart($("safetyChart"), {
+    type: "bar",
+    data: { labels: ranked.map(s => s.short),
+      datasets: [{ data: ranked.map(s => s.score), backgroundColor: ranked.map(s => GROUP[s.group].color + "d9"), borderRadius: 5 }] },
+    options: {
+      indexAxis: "y",
+      plugins: { legend: { display: false }, tooltip: { callbacks: { title: items => ranked[items[0].dataIndex].name, label: it => ` Safety score: ${it.parsed.x}/100` } } },
+      scales: { x: { min: 0, max: 100, grid: { color: GRID } }, y: { grid: { display: false } } },
+      onClick: (evt, els) => { if (els.length) openInNavigator(ranked[els[0].index].id); },
+      onHover: (evt, els) => { evt.native.target.style.cursor = els.length ? "pointer" : "default"; }
+    },
+    plugins: [valueLabels(v => String(v))]
+  });
+
+  // 8. US pay percentiles
+  new Chart($("usPayChart"), {
+    type: "bar",
+    data: {
+      labels: ["10th pct", "25th pct", "Median", "75th pct", "90th pct"],
+      datasets: [
+        { label: "Computer hardware engineers", data: [92940, 126090, 161740, 202990, 225330], backgroundColor: "rgba(45,212,191,.85)", borderRadius: 6 },
+        { label: "Electronics engineers (except computer)", data: [81840, 101680, 130220, 167670, 206960], backgroundColor: "rgba(96,165,250,.85)", borderRadius: 6 }
+      ]
+    },
+    options: {
+      plugins: { legend: { position: "top", align: "start" }, tooltip: { callbacks: { label: it => ` ${it.dataset.label}: $${it.parsed.y.toLocaleString()}` } } },
+      scales: { y: { min: 0, max: 250000, grid: { color: GRID }, ticks: { callback: v => "$" + v / 1000 + "k" } }, x: { grid: { display: false } } }
+    },
+    plugins: [valueLabels(v => "$" + Math.round(v / 1000) + "k")]
+  });
+})();
+</script>
+</body>
+</html>
